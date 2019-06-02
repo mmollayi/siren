@@ -1,3 +1,4 @@
+time.ctime()
 ms1filename = "15b.ms1"
 
 print('Reading the ms1file')
@@ -28,3 +29,12 @@ for line in ms1file:
         peaklist[-1][1].append( (mz,intensity) )
 ms1file.close()
 print('Numpeaks: ' + str(numpeaks))
+time.ctime()
+
+if True:
+    tol = 0.005
+    print('Deleting unduplicated peaks')
+    justpeaks = [ peaklist[t][1] for t in range(len(peaklist)) ]
+    justpeaks =  delete_unduplicated_peaklist( justpeaks, tol )
+    
+svs = [[] for i in range(len(justpeaks))]
